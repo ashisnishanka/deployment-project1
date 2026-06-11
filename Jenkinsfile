@@ -1,22 +1,27 @@
 pipeline {
     agent {
-        docker {
-            image 'yourdockerhubusername/maven-docker-agent:v1'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-        }
+    docker {
+      image 'abhishekf5/maven-abhishek-docker-agent:v1'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
-
+  }
+    
     stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t myapp:v1 .'
-            }
-        }
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+        //git branch: 'main', url: 'https://github.com/ashisnishanka/deployment-project1.git'
+      }
     }
+
+  stage('Build and Test') {
+      steps {
+        sh 'ls -ltr'
+        // build the project and create a JAR file
+         sh 'mvn clean package'
+		
+      }
+    }
+        
+}
 }
