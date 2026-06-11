@@ -23,23 +23,30 @@ pipeline {
 		
       }
     }
-  stage('Static Code Analysis') {
-    // environment {
-    //     SONAR_HOST_URL = 'http://65.0.181.39:9000'
-    //     SONAR_AUTH_TOKEN = credentials('sonarqubeserver')
-    // }
+//   stage('Static Code Analysis') {
+//     // environment {
+//     //     SONAR_HOST_URL = 'http://65.0.181.39:9000'
+//     //     SONAR_AUTH_TOKEN = credentials('sonarqubeserver')
+//     // }
 
-    // steps {
-    //     sh '''
-    //     mvn sonar:sonar \
-    //     -Dsonar.projectKey=demo \
-    //     -Dsonar.host.url=$SONAR_HOST_URL \
-    //     -Dsonar.token=$SONAR_AUTH_TOKEN
-    //     '''
-    // }
-	  withSonarQubeEnv('sonarqubeserver') {
-    sh 'mvn sonar:sonar'
-}
+//     // steps {
+//     //     sh '''
+//     //     mvn sonar:sonar \
+//     //     -Dsonar.projectKey=demo \
+//     //     -Dsonar.host.url=$SONAR_HOST_URL \
+//     //     -Dsonar.token=$SONAR_AUTH_TOKEN
+//     //     '''
+//     // }
+// 	  withSonarQubeEnv('sonarqubeserver') {
+//     sh 'mvn sonar:sonar'
+// }
+// }
+stage('Static Code Analysis') {
+    steps {
+        withSonarQubeEnv('sonarqubeserver') {
+            sh 'mvn sonar:sonar'
+        }
+    }
 }
 		
 }
