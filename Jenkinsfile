@@ -30,6 +30,9 @@ pipeline {
     steps {
         withCredentials([string(credentialsId: 'sonar-test', variable: 'SONAR-AUTH-TOKEN')]) {
             sh '''
+			  
+                echo "Token Length:"
+                echo ${#SONAR_TOKEN}
                 mvn sonar:sonar \
                 -Dsonar.host.url=$SONAR_URL \
                 -Dsonar.token=$SONAR-AUTH-TOKEN
@@ -37,6 +40,7 @@ pipeline {
         }
     }
 }
+		
 }
 }
 
