@@ -25,20 +25,19 @@ pipeline {
     }
   stage('Static Code Analysis') {
     environment {
-        SONAR_URL = "http://65.0.181.39:9000"
+        SONAR_HOST_URL = 'http://65.0.181.39:9000'
+        SONAR_AUTH_TOKEN = credentials('sonarqube')
     }
+
     steps {
-        withCredentials([string(credentialsId: 'sonar-test', variable: 'SONAR-AUTH-TOKEN')]) {
-            sh '''
-			  
-                echo "Token Length:"
-                echo ${#SONAR_TOKEN}
-                mvn sonar:sonar \
-                -Dsonar.host.url=$SONAR_URL \
-                -Dsonar.token=$SONAR-AUTH-TOKEN
-            '''
-        }
+        sh '''
+        mvn sonar:sonar \
+        -Dsonar.projectKey=demo \
+        -Dsonar.host.url=$SONAR_HOST_URL \
+        -Dsonar.token=$SONAR_AUTH_TOKEN
+        '''
     }
+}
 }
 		
 }
