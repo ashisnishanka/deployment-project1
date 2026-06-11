@@ -10,7 +10,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/ashisnishanka/deployment-project1.git'
+        git branch: 'main', url: 'https://github.com/ashisnishanka/deployment-project1.git'
       }
     }
 
