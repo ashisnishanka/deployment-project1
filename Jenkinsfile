@@ -44,7 +44,7 @@ pipeline {
 stage('Static Code Analysis') {
     steps {
         withSonarQubeEnv('sonarserver') {
-            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=testproject -Dsonar.projectName='testproject'"
+            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=deploy-project -Dsonar.projectName='deploy-project'"
         }
     }
 }
