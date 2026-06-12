@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.idream</groupId>
 	<!--<artifactId>demo</artifactId> -->
-	<artifactId>testproject</artifactId>
+	<artifactId>deploy-project</artifactId>
 	<version>1.0</version>
 	<name/>
 	<description/>
